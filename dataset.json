@@ -1,6 +1,18 @@
 [
     {
         "url": "https://raw.githubusercontent.com/DasStudioINC/ALLI_AI_IMAGE_TRAIN_REPO/main/images/spider/gen_1.png",
-        "prompt": "\"Create an image of a stylized robot with a human-like face, featuring red skin and glowing blue eyes. The robot has a circular emblem on its chest and a distinctive, metallic mask covering the lower half of its face. The background is a gradient of red to black, and there is a faint outline of a web-like pattern. The overall style is reminiscent of a comic book character with a futuristic, high-tech aesthetic.\""
+        "prompt": "Create an image of a character from the Spider-Man universe, specifically the Spider-Man: No Way Home movie. The character should be in full-body costume, which includes a red and blue suit with a web pattern, gloves, boots, and a mask with eye and mouth detailing. The character should have a muscular build and be in a dynamic pose, with one hand touching the mask and the other pointing forward. The background is a dimly lit environment with electric-like sparkles. In the upper portion of the image, there is a circular blue light with a crackling effect. The lighting is predominantly cool-toned with blue and purple hues. The style of the image should be realistic with a focus on the vibrant colors and intricate details of the Spider-Man suit."
+    },
+    {
+        "url": "https://raw.githubusercontent.com/DasStudioINC/ALLI_AI_IMAGE_TRAIN_REPO/main/images/spider/gen_2.png",
+        "prompt": "Spider-Man costume on a mannequin, set against a studio backdrop. Subject is positioned in a three-quarter pose with hands in a yoga or martial arts stance. The costume is detailed with web patterns and the iconic spider design on the chest, along with the Spider-Man emblem on the chestpiece. The background is neutral, ensuring the focus remains on the costume. The lighting is soft and even, providing a clear view of the costume's textures and colors. The costume itself is blue, red, and black, with the webs appearing in white."
+    },
+    {
+        "url": "https://raw.githubusercontent.com/DasStudioINC/ALLI_AI_IMAGE_TRAIN_REPO/main/images/spider/gen_1.png",
+        "prompt": "Create an image of a character from the Spider-Man universe, specifically the Spider-Man: No Way Home movie. The character should be in full-body costume, which includes a red and blue suit with a web pattern, gloves, boots, and a mask with eye and mouth detailing. The character should have a muscular build and be in a dynamic pose, with one hand touching the mask and the other pointing forward. The background is a dimly lit environment with electric-like sparkles. In the upper portion of the image, there is a circular blue light with a crackling effect. The lighting is predominantly cool-toned with blue and purple hues. The style of the image should be realistic with a focus on the vibrant colors and intricate details of the Spider-Man suit."
+    },
+    {
+        "url": "https://raw.githubusercontent.com/DasStudioINC/ALLI_AI_IMAGE_TRAIN_REPO/main/images/spider/gen_2.png",
+        "prompt": "Spider-Man costume on a mannequin, set against a studio backdrop. Subject is positioned in a three-quarter pose with hands in a yoga or martial arts stance. The costume is detailed with web patterns and the iconic spider design on the chest, along with the Spider-Man emblem on the chestpiece. The background is neutral, ensuring the focus remains on the costume. The lighting is soft and even, providing a clear view of the costume's textures and colors. The costume itself is blue, red, and black, with the webs appearing in white."
     }
 ]
