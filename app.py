@@ -20,7 +20,7 @@ OLLAMA_VISION_MODEL = "llava"
 
 # --- GITHUB CONFIGURATION ---
 GITHUB_REPO_PATH = "." 
-GITHUB_IMAGES_TARGET_DIR = "images/spider" # Target folder inside your GitHub repository where images are stored
+GITHUB_IMAGES_TARGET_DIR = "images" # Target folder inside your GitHub repository where images are stored
 GITHUB_BRANCH = "main"
 
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -40,6 +40,12 @@ def batch_generate_images(pipe, base_prompt, num_images=2):
     """Generates multiple images locally from a single master prompt with isolated random generators."""
     print(f"🎨 Generating {num_images} images for prompt: '{base_prompt}'...")
     image_paths = []
+
+
+    genCount = 0
+    
+    with open("gen.txt", "r") as file:
+        genCount = int(file.read().split(":")[1])
     
     for i in range(num_images):
         # Create an explicit random generator for each batch item to ensure clean noise initialization
@@ -50,11 +56,16 @@ def batch_generate_images(pipe, base_prompt, num_images=2):
         image = result.images[0]
         
         # Save image locally
-        file_name = f"gen_{i+1}.png"
+        genCount += 1
+        file_name = f"gen_{genCount}.png"
         file_path = os.path.join(OUTPUT_DIR, file_name)
         image.save(file_path)
         image_paths.append(file_path)
         print(f" -> Saved image: {file_path}")
+        
+
+    with open("gen.txt", "w") as file:
+        file.write(f"gen:{genCount}")
         
     return image_paths
 
