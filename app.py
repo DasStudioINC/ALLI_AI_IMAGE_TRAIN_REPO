@@ -41,11 +41,12 @@ def batch_generate_images(pipe, base_prompt, num_images=2):
     print(f"🎨 Generating {num_images} images for prompt: '{base_prompt}'...")
     image_paths = []
 
-
     genCount = 0
-    
-    with open("gen.txt", "r") as file:
-        genCount = int(file.read().split(":")[1])
+    if os.path.exists("gen.txt"):
+        with open("gen.txt", "r") as file:
+            content = file.read().strip()
+            if content:
+                genCount = int(content.split(":")[1])
     
     for i in range(num_images):
         # Create an explicit random generator for each batch item to ensure clean noise initialization
@@ -63,7 +64,6 @@ def batch_generate_images(pipe, base_prompt, num_images=2):
         image_paths.append(file_path)
         print(f" -> Saved image: {file_path}")
         
-
     with open("gen.txt", "w") as file:
         file.write(f"gen:{genCount}")
         
@@ -118,7 +118,7 @@ def save_to_json(data, json_path):
     print(f"💾 Successfully saved dataset schema to {json_path}")
 
 def push_to_github(local_entries, status_callback=lambda msg: None):
-    """Pulls remote repo changes, appends local entries to dataset.json, copies images, and commits/pushes."""
+    """Pulls remote repo changes, appends unique local entries to dataset.json, copies images, and commits/pushes."""
     status_callback("Connecting to Git repository...")
     try:
         repo = Repo(GITHUB_REPO_PATH)
@@ -128,7 +128,7 @@ def push_to_github(local_entries, status_callback=lambda msg: None):
         origin = repo.remotes.origin
         origin.pull(GITHUB_BRANCH)
         
-        # 2. Load existing repository dataset.json if it exists and append new entries
+        # 2. Load existing repository dataset.json if it exists and append new entries uniquely
         repo_json_path = os.path.join(GITHUB_REPO_PATH, JSON_OUTPUT_PATH)
         existing_data = []
         if os.path.exists(repo_json_path):
@@ -138,7 +138,11 @@ def push_to_github(local_entries, status_callback=lambda msg: None):
                 except json.JSONDecodeError:
                     existing_data = []
                     
-        combined_data = existing_data + local_entries
+        # Prevent duplicates by checking if the URL is already present in dataset.json
+        existing_urls = {entry.get("url") for entry in existing_data}
+        new_unique_entries = [entry for entry in local_entries if entry.get("url") not in existing_urls]
+        
+        combined_data = existing_data + new_unique_entries
         
         with open(repo_json_path, "w", encoding="utf-8") as f:
             json.dump(combined_data, f, indent=4)
